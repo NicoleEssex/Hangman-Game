@@ -1,62 +1,107 @@
  
-var comNames = ['Richard Pryer', 'George Carlin', 'Chris Rock', 'Robin Williams', 'Steve Martin'];
+var comNames = ['Richard Pryor', 'George Carlin', 'Chris Rock', 'Robin Williams'];
 
 
-var confirmPlay = confirm('Do you want to play hangman?');
+// var confirmPlay = confirm('Do you want to play hangman?');
 
-if(confirmPlay) {
-    playgame();
-} 
-else {
-    nogame();
-}
+// if(01) {
+//     playgame();
+// } 
+// else {
+//     nogame();
+// }
 
 function playgame() {
+    
     var nameArray = [];
-    alert('press any letter to begin');
+    // creates random number from the comedian name array and stores it in the comNum variable.
     var comNum = Math.floor(Math.random() * comNames.length);
     console.log(comNum);
     console.log(comNames[comNum]);
+    //comChoice stores the random number created by the variable comNum.
     var comChoice = comNames[comNum];
     console.log(comChoice.length);
+    //this loops through comChoice variable starting at 0, stopping at each value for the length of comChoice and pushes each character to the name Array variable.
     for(var i=0; i<comChoice.length; i++) {
-       nameArray.push(comChoice.charAt(i));
+        nameArray.push(comChoice.charAt(i));
+        console.log(nameArray);
     }
-    console.log(nameArray);
-}
 
-function nogame() {
-    alert('go play solitaire then!');
+    var comNameDisplay = document.getElementById("ComNameDisplay");
+    // this loops through nameArray variable starting at 0 stopping at each value for the length of the array.
+    //creates undefined variable, text.
+    //creates a new variable, nameDashes, and a new span element.
+    //creates if/else to compare values within nameArray. If the character is a space its assigned the id space attribute in the nameDashes varialbe. Else its a letter its assigned the id attribute of what letter it is from the nameArray[i]. 
+    for(var i=0; i<nameArray.length; i++) {
+        var text;
+        var nameDashes = document.createElement("span");
+        if(nameArray[i] === " ") {
+            console.log("space");
+            text = document.createTextNode("  ");
+            nameDashes.setAttribute("id", "space");
+        }
+        else {
+            text = document.createTextNode("_ ");
+            nameDashes.setAttribute("id", nameArray[i]);
+        }
+    
+    
+        nameDashes.appendChild(text);
+    
+        comNameDisplay.appendChild(nameDashes);
+    }
+    
+    //listen for key event
+    document.onkeyup = function(event) {
+        //record key event to userGuess variable
+        var userGuess = event.key;
+            console.log('userGuess', userGuess);
+            //loop userGuess through nameArray
+           for (var i =0; i<nameArray.length; i++); { 
+            //compare userGuess to nameArray[i]. 
+            //if true Call span id with matching letter. Replace nameDashes with correct letter.
+            //if userGuess === nameArray.length play audio clip of comedian guessed.
+            // if userGuess === nameArray.length update number of comedians guessed.
+            // if false hook into html element "wrongLetters". Display userGuess here.
+            //if false update number of userGuesses remaining.
+                //function updateGuess() { document.querySelector(numOfGuessRem).innerHTML = "Number of Guesses Remaining:" - numOfGuessRem}    
+            // if (numOfGuessRem === 0){ return;}     
+            
 
 
-}
+
+    
+             
+    
+            
+        }
+    }
+
+
+        
+          
+ //The code below was created that with my online tutor's help. We were unable to replace the dashes with the letters. What this ended up doing was displaying the whole name of the comedian at once.
+
+        // for(var j=0; j<nameArray.length; j++){
+        //     console.log('text', text);
+        //     console.log('nameDashes', nameDashes);
+        //     nameDashes
+        //     if(nameArray[j] === " ") {
+        //         console.log("space");
+        //         text = document.createTextNode("  ");
+        //         nameDashes.setAttribute("id", "space");
+        //     }
+        //     else if (nameArray[j] === userGuess) {
+        //         text = document.createTextNode(nameArray[i]);
+        //         nameDashes.setAttribute("id", nameArray[i]);
+        //     }
+        //     nameDashes.innerHTML+=nameArray[j];
+
+        //     comNameDisplay.appendChild(nameDashes);
+}        
+    
+// }
+playgame(); 
 
 
 
-
-
-var alphaWrong = [];
-
-var alphaRight = [];
-
-
-// console.logs
-
-console.log(comNames);
-console.log(alphaWrong);
-console.log(alphaRight);
-
-
-// I want the computer to randomly select a comedians name from my array.
-
-
-// I want the player to choose a letter in the alphabet.
-
-function keyupFunction() {
-    alert('key up working');
-}
-// I want to record the player's letter choice and display it on the screen, in the proper place of the Name or in the Letters not Used section until the puzzle is solved.
-
-// I want the computer to repeat the above process until the puzzle is solved.
-
-// When the puzzle is solved I want to display a picture of that comedian and listen to a audio clip of that comedian.
